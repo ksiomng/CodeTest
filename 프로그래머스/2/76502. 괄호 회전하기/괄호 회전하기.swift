@@ -2,42 +2,41 @@ import Foundation
 
 func solution(_ s:String) -> Int {
     var str:String = s
-    var a = ""
-    var  cnt:Int = 0
+    var result:Int = 0
+    
     for _ in 0..<str.count {
+        var stack = ""
         str.append((str.first)!)
         str.removeFirst()
         for s in str {
             if s == "]" {
-                if a.last == "[" {
-                    a.removeLast()
+                if stack.last == "[" {
+                    stack.removeLast()
                 }else {
-                    a = "*"
+                    stack = "*"
                     break
                 }
             }else if s == "}" {
-                if a.last == "{" {
-                    a.removeLast()
+                if stack.last == "{" {
+                    stack.removeLast()
                 }else {
-                    a = "*"
+                    stack = "*"
                     break
                 }
             }else if s == ")" {
-                if a.last == "(" {
-                    a.removeLast()
+                if stack.last == "(" {
+                    stack.removeLast()
                 }else {
-                    a = "*"
+                    stack = "*"
                     break
                 }
             }else {
-                a.append(s)
+                stack.append(s)
             }
         }
-        if a.isEmpty {
-            cnt += 1
-        }else {
-            a = ""
+        if stack.isEmpty {
+            result += 1
         }
     }
-    return cnt
+    return result
 }
