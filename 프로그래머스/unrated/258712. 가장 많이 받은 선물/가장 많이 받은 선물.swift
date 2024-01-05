@@ -11,17 +11,11 @@ func solution(_ friends:[String], _ gifts:[String]) -> Int {
     
     var result = Dictionary<String, Int>()
     
-    // dic 를 친구 수 만큼 각각 만들어주기
+    // 초기값
     for friend in friends {
         give[friend] = 0
         take[friend] = 0
         result[friend] = 0
-        for f in friends {
-            if f != friend {
-                var a = [friend, f]
-                dic[a] = 0
-            }
-        }
     }
     
     // 누가 누구에게 선물을 줬는지에 대해 dic에 담기
@@ -47,14 +41,14 @@ func solution(_ friends:[String], _ gifts:[String]) -> Int {
             var a = [friends[i], friends[j]]
             var b = [friends[j], friends[i]]
             
-            if dic[a]! > dic[b]! { // 친구 i가 j 한테 준 선물이 j가 i한테 준 선물보다 클때
+            if dic[a, default: 0] > dic[b, default: 0] { // 친구 i가 j 한테 준 선물이 j가 i한테 준 선물보다 클때 존재하지 않으면 0
                 result[friends[i]]! += 1 // i가 더 많이 줬기 때문에 i 더하기 1
             }
-            else if dic[a]! < dic[b]! {// 반대
+            else if dic[a, default: 0] < dic[b, default: 0] {// 반대
                 result[friends[j]]! += 1
             }
-            else{
-                if cnt[friends[i]]! > cnt[friends[j]]! {
+            else{ // 같을 때
+                if cnt[friends[i]]! > cnt[friends[j]]! { // 선물지수 비교
                     result[friends[i]]! += 1
                 }
                 else if cnt[friends[i]]! < cnt[friends[j]]! {
