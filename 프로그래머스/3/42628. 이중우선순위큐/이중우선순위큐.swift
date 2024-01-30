@@ -5,10 +5,10 @@ func solution(_ operations:[String]) -> [Int] {
     var queue:[Int] = []
     
     for i in 0..<oper.count {
-        queue = queue.sorted()
         if oper[i].removeFirst() == "I" {
             oper[i].removeFirst()
             queue.append(Int(oper[i])!)
+            queue = queue.sorted()
         } else {
             oper[i].removeFirst()
             if !queue.isEmpty {
