@@ -1,10 +1,10 @@
 # [level 2] 최댓값과 최솟값 - 12939 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12939) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12939?language=swift) 
 
 ### 성능 요약
 
-메모리: 16.6 MB, 시간: 0.64 ms
+메모리: 16.5 MB, 시간: 0.45 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2023년 11월 1일 10:13:24
+2024년 09월 16일 14:15:12
 
 ### 문제 설명
 

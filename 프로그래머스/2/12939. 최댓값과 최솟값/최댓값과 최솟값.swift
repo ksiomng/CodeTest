@@ -1,5 +1,8 @@
 func solution(_ s:String) -> String {
-    var arr = s.split(separator: " ").map{Int($0)!}
-    arr = arr.sorted()
-    return (String(arr[0]) + " " + String(arr[arr.count-1]))
+    var arr = s.split(separator: " ")
+    var result = [Int]()
+    for a in arr {
+        result.append(Int(a)!)
+    }
+    return String(result.min()!) + " " + String(result.max()!)
 }
