@@ -1,10 +1,11 @@
 func solution(_ n:Int) -> Int {
-    var first = 0
-    var second = 1
-    for i in 0..<n {
-        let temp = first + second
-        first = second
-        second = temp % 1234567
+    var dp: [Int] = [0, 1, 2]
+    
+    if n >= 3 {
+        for i in 3...n {
+            dp.append((dp[i-2] + dp[i-1]) % 1234567)
+        }
     }
-    return second
+    
+    return (dp[n])
 }
