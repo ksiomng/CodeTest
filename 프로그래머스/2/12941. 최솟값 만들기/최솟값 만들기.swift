@@ -1,13 +1,13 @@
 import Foundation
 
 func solution(_ A:[Int], _ B:[Int]) -> Int {
-  var arrayA = A.sorted()
-  var arrayB = B.sorted()
-  var sum = 0
-  
-  for _ in 0..<A.count {
-    sum += arrayA.removeFirst() * arrayB.removeLast()
-  }
-  
-  return sum
+    var ans = 0
+    var a = A.sorted(by: >)
+    var b = B.sorted(by: <)
+    
+    for i in 0..<A.count {
+        ans += (a[i] * b[i])
+    }
+    
+    return ans
 }
