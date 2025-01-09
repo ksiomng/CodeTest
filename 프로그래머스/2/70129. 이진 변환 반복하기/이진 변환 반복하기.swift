@@ -1,18 +1,16 @@
 import Foundation
 
-func solution(_ s:String) -> [Int] {
-    var str:String = s
-    var result1:Int = 0
-    var result2:Int = 0
-    while (true) {
-        var i = str.filter{$0 == "0"}.count
-        result1 += i
-        var k = str.count - i
-        str = String(k, radix: 2)
-        result2 += 1
-        if k <= 1 {
-            break
-        }
+func solution(_ s: String) -> [Int] {
+    var s = s
+    var transformationCount = 0
+    var removedZerosCount = 0
+
+    while s != "1" {
+        let zeroCount = s.filter { $0 == "0" }.count
+        removedZerosCount += zeroCount
+        s = String(s.filter { $0 == "1" }.count, radix: 2)
+        transformationCount += 1
     }
-    return [result2, result1]
+
+    return [transformationCount, removedZerosCount]
 }
