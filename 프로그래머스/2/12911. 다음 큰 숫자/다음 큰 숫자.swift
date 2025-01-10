@@ -1,14 +1,16 @@
 import Foundation
 
-func solution(_ n:Int) -> Int
-{
-    var result:Int = 0
-    var cnt:Int = String(n, radix:2).filter{$0 == "1"}.count
-    for i in (n+1)...1000000 {
-        if String(i, radix:2).filter({$0 == "1"}).count == cnt {
-            result = i
-            break
-        }
+func solution(_ n: Int) -> Int {
+    let countOnes = { (number: Int) -> Int in
+        return String(number, radix: 2).filter { $0 == "1" }.count
     }
-    return result
+    
+    let targetOnes = countOnes(n)
+    var nextNumber = n + 1
+    
+    while countOnes(nextNumber) != targetOnes {
+        nextNumber += 1
+    }
+    
+    return nextNumber
 }
