@@ -1,11 +1,10 @@
-import Foundation
-
-func solution(_ n:Int) -> Int
-{
-    var arr:[Int] = [0, 1]
-
+func solution(_ n: Int) -> Int {
+    let MOD = 1234567
+    var fib = [0, 1]
+    
     for i in 2...n {
-        arr.append((arr[i-2] + arr[i-1]) % 1234567 )
-     }
-    return arr[n]
+        fib.append((fib[i-1] + fib[i-2]) % MOD)
+    }
+    
+    return fib[n]
 }
