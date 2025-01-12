@@ -1,14 +1,15 @@
 import Foundation
 
-func solution(_ s:String) -> Int{
-    var arr = [Character]()
-    for c in s {
-        if !arr.isEmpty && arr.last == c {
-            arr.removeLast()
-        }
-        else {
-            arr.append(c)
+func solution(_ s: String) -> Int {
+    var stack: [Character] = []
+    
+    for char in s {
+        if let last = stack.last, last == char {
+            stack.removeLast()
+        } else {
+            stack.append(char)
         }
     }
-    return arr.isEmpty ? 1 : 0
+    
+    return stack.isEmpty ? 1 : 0
 }
