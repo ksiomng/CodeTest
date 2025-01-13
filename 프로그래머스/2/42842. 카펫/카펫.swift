@@ -1,17 +1,15 @@
 import Foundation
 
-func solution(_ brown:Int, _ yellow:Int) -> [Int] {
-    var w = 0, h = 0
-    let sum = brown + yellow
+func solution(_ brown: Int, _ yellow: Int) -> [Int] {
+    let total = brown + yellow
     
-    for i in 1...sum {
-        if sum % i == 0 {
-            w = sum / i
-            h = i
-        }
-        if (w-2) * (h-2) == yellow {
-            break
+    for height in 1...total {
+        if total % height == 0 {
+            let width = total / height
+            if width >= height && (width - 2) * (height - 2) == yellow {
+                return [width, height]
+            }
         }
     }
-    return [w, h]
+    return []
 }
