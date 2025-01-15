@@ -1,18 +1,15 @@
 import Foundation
 
-func solution(_ n:Int) -> Int
-{
-    var a:Int = n
-    var result:Int = 0
-    
-    while a != 0 {
-        if (a%2 == 0) {
-            a = a/2
-        }
-        else {
-            a -= 1
-            result += 1
+func solution(_ n:Int) -> Int {
+    var N: Int = n
+    var cnt:Int = 0
+    while N != 0 {
+        if N % 2 == 0 {
+            N /= 2
+        } else {
+            N -= 1
+            cnt += 1
         }
     }
-    return result
+    return cnt
 }
