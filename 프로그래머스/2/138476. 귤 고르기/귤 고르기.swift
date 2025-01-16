@@ -1,21 +1,27 @@
 import Foundation
 
-func solution(_ k:Int, _ tangerine:[Int]) -> Int {
-    var arr = tangerine.sorted()
-    var cnt = [Int](repeating: 0, count: tangerine.max()! + 1)
-    var result:Int = 0
-    var a:Int = 0
-    for a in arr {
-        cnt[a] += 1
+func solution(_ k: Int, _ tangerine: [Int]) -> Int {
+    var countDict = [Int: Int]()
+    
+    // 각 크기별 귤 개수 세기
+    for t in tangerine {
+        countDict[t, default: 0] += 1
     }
-    cnt.removeFirst()
-    cnt = cnt.sorted(by: > )
-    for c in cnt {
-        a  += c
-        result += 1
-        if a >= k {
+    
+    // 크기별 귤 개수를 내림차순으로 정렬
+    let sortedCounts = countDict.values.sorted(by: >)
+    
+    var selected = 0
+    var types = 0
+    
+    // 가장 많이 있는 크기부터 k개를 채우기
+    for count in sortedCounts {
+        selected += count
+        types += 1
+        if selected >= k {
             break
         }
     }
-    return result
+    
+    return types
 }
