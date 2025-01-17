@@ -1,22 +1,21 @@
 import Foundation
 
-func solution(_ n:Int, _ words:[String]) -> [Int] {
-    var arr:[String] = []
+func solution(_ n: Int, _ words: [String]) -> [Int] {
+    var usedWords = Set<String>()
+    usedWords.insert(words[0])
     
-    for i in 0..<words.count {
-        if !arr.isEmpty {
-            for s in arr {
-                if s == words[i] {
-                    print(i)
-                    return [(i%n)+1,(i/n)+1]
-                }
-            }
-            if arr[arr.count-1].last != words[i].first {
-                print(i)
-                return [(i%n)+1,(i/n)+1]
-            }
+    for i in 1..<words.count {
+        let prevWord = words[i-1]
+        let currentWord = words[i]
+        
+        if usedWords.contains(currentWord) || prevWord.last != currentWord.first {
+            let player = (i % n) + 1
+            let turn = (i / n) + 1
+            return [player, turn]
         }
-        arr.append(words[i])
+        
+        usedWords.insert(currentWord)
     }
-    return [0,0]
+    
+    return [0, 0]
 }
