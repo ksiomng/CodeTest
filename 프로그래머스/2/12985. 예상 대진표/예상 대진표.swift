@@ -1,18 +1,15 @@
 import Foundation
 
-func solution(_ n:Int, _ a:Int, _ b:Int) -> Int
-{
-    var A = a
-    var B = b
-    var result = 0
+func solution(_ n: Int, _ a: Int, _ b: Int) -> Int {
+    var result: Int = 0
+    var A: Int = a
+    var B: Int = b
     
-    while (true) {
-        A = A%2 == 0 ? (A/2) : (A/2+1)
-        B = B%2 == 0 ? (B/2) : (B/2+1)
+    while A != B {
+        A = (A + 1) / 2
+        B = (B + 1) / 2
         result += 1
-        if A == B {
-            break
-        }
     }
+    
     return result
 }
