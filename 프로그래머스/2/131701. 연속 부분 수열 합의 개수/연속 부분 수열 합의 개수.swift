@@ -1,19 +1,25 @@
 import Foundation
 
-func solution(_ elements:[Int]) -> Int {
-    //중복을 제거해야 하므로 Set<Int>를 사용
-    var result = Set<Int>()
-    //연속된 수열 %처리 해줘도 되지만 2배로 늘려줘도 된다.
-    let long = elements + elements
+func solution(_ elements: [Int]) -> Int {
+    let n = elements.count
+    var uniqueSums = Set<Int>()
+    var prefixSums = [0] // 누적 합 배열 (0부터 시작)
     
-    //시작 인덱스부터 원소의 개수만큼 누적되는 누적합을 result에 쌓아간다.
-    for idx in 0..<elements.count{
-        var num = 0
-        for offset in 0..<elements.count{
-            num += long[idx+offset]
-            result.insert(num)
-        }
-        num = 0
+    // 누적 합 배열 생성
+    for element in elements {
+        prefixSums.append(prefixSums.last! + element)
     }
-    return result.count
+    
+    // 길이별로 부분 합 계산
+    for length in 1...n {
+        for start in 0..<n {
+            let end = (start + length) % n
+            let sum = start < end
+                ? prefixSums[end] - prefixSums[start]
+                : prefixSums[n] - prefixSums[start] + prefixSums[end]
+            uniqueSums.insert(sum)
+        }
+    }
+    
+    return uniqueSums.count
 }
