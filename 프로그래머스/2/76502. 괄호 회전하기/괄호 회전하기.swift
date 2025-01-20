@@ -1,42 +1,45 @@
 import Foundation
 
 func solution(_ s:String) -> Int {
-    var str:String = s
-    var result:Int = 0
-    
-    for _ in 0..<str.count {
-        var stack = ""
-        str.append((str.first)!)
-        str.removeFirst()
-        for s in str {
-            if s == "]" {
-                if stack.last == "[" {
-                    stack.removeLast()
-                }else {
-                    stack = "*"
-                    break
-                }
-            }else if s == "}" {
-                if stack.last == "{" {
-                    stack.removeLast()
-                }else {
-                    stack = "*"
-                    break
-                }
-            }else if s == ")" {
-                if stack.last == "(" {
-                    stack.removeLast()
-                }else {
-                    stack = "*"
-                    break
-                }
-            }else {
-                stack.append(s)
-            }
-        }
-        if stack.isEmpty {
-            result += 1
+    var cnt: Int = 0
+    var str: String = s
+    for _ in str {
+        str.append(str.removeFirst())
+        if checkParentheses(str) {
+            cnt += 1
         }
     }
-    return result
+    return cnt
+}
+
+func checkParentheses(_ s: String) -> Bool {
+    var stack = [String]()
+    for s in s {
+        if s == "[" {
+            stack.append("[")
+        } else if s == "]" {
+            if stack.last == "[" {
+                stack.removeLast()
+            } else {
+                return false
+            }
+        } else if s == "{" {
+            stack.append("{")
+        } else if s == "}" {
+            if stack.last == "{" {
+                stack.removeLast()
+            } else {
+                return false
+            }
+        }  else if s == "(" {
+            stack.append("(")
+        } else if s == ")" {
+            if stack.last == "(" {
+                stack.removeLast()
+            } else {
+                return false
+            }
+        }
+    }
+    return stack.isEmpty ? true : false
 }
