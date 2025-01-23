@@ -1,8 +1,15 @@
 import Foundation
 
-func solution(_ n:Int, _ left:Int64, _ right:Int64) -> [Int] {
-    let result: [Int] = (Int(left)...Int(right)).map {
-        max($0 / n + 1, $0 % n + 1)
+func solution(_ n: Int, _ left: Int64, _ right: Int64) -> [Int] {
+    var result: [Int] = []
+    
+    for index in left...right {
+        let row = Int(index / Int64(n))
+        let col = Int(index % Int64(n))
+        
+        // 해당 위치의 값은 max(row, col) + 1
+        result.append(max(row, col) + 1)
     }
+    
     return result
 }
