@@ -1,11 +1,16 @@
 import Foundation
 
-func solution(_ citations:[Int]) -> Int {
-    var arr = citations.sorted(by: >)
-    for i in 0..<arr.count {
-        if i >= arr[i] {
-            return i
+func solution(_ citations: [Int]) -> Int {
+    let sorted = citations.sorted(by: >)
+    var h = 0
+    
+    for (index, citation) in sorted.enumerated() {
+        if citation >= index + 1 {
+            h = index + 1
+        } else {
+            break
         }
     }
-    return arr.count
+    
+    return h
 }
