@@ -1,27 +1,26 @@
-func solution(_ cacheSize:Int, _ cities:[String]) -> Int {
+func solution(_ cacheSize: Int, _ cities: [String]) -> Int {
+    if cacheSize == 0 { return cities.count * 5 }
     
-    let Citiies = cities.map { //대소문자 구분 X
-        return $0.lowercased()
-    }
+    var cache: [String] = []
+    var totalTime = 0
     
-    var arr = [String]()
-    var cnt: Int = 0
-    
-    for city in Citiies {
-        //cache hit
-        if arr.contains(city) {
-            cnt = cnt + 1
-            arr.remove(at: arr.firstIndex(of: city)!)
-            arr.insert(city, at: 0)
-        }
-        //cache miss
-        else {
-            cnt = cnt + 5
-            arr.insert(city, at: 0)
-            if arr.count > cacheSize {
-                arr.removeLast()
+    for city in cities {
+        let lowercaseCity = city.lowercased()
+        
+        if let index = cache.firstIndex(of: lowercaseCity) {
+            // Cache hit
+            cache.remove(at: index)
+            cache.append(lowercaseCity)
+            totalTime += 1
+        } else {
+            // Cache miss
+            if cache.count >= cacheSize {
+                cache.removeFirst()
             }
+            cache.append(lowercaseCity)
+            totalTime += 5
         }
     }
-    return cnt
+    
+    return totalTime
 }
