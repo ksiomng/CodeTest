@@ -1,11 +1,12 @@
 import Foundation
 
-func solution(_ n:Int) -> Int
-{
-    var answer = 0
+func solution(_ n:Int) -> Int{
     var str = String(n)
-    for c in str {
-        answer += Int(String(c))!
+    var answer = 0
+    
+    for s in str {
+        answer += Int(String(s))!
     }
+    
     return answer
 }
