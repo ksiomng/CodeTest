@@ -1,31 +1,34 @@
 import Foundation
 
-func solution(_ progresses:[Int], _ speeds:[Int]) -> [Int] {
-    var times = [Int]()
-    var fin = 0
-    var result = [Int]()
-    for i in 0..<progresses.count {
-        var fin = progresses[i]
-        var a = 0
-        while (fin < 100) {
-            fin += speeds[i]
-            a += 1
-        }
-        times.append(a)
+func solution(_ progresses: [Int], _ speeds: [Int]) -> [Int] {
+    var result: [Int] = []
+    var days: [Int] = []
+    
+    // 각 작업이 완료되는데 필요한 일수 계산
+    for (progress, speed) in zip(progresses, speeds) {
+        let remainingWork = 100 - progress
+        let daysNeeded = Int(ceil(Double(remainingWork) / Double(speed)))
+        days.append(daysNeeded)
     }
-    print(times)
-    var max = times[0]
-    var cnt = 0
-    for time in times {
-        if time <= max {
-            cnt += 1
+    
+    var maxDay = days[0]
+    var count = 0
+    
+    // 배포 가능한 기능 수 계산
+    for day in days {
+        if day <= maxDay {
+            count += 1
         } else {
-            result.append(cnt)
-            max = time
-            cnt = 1
+            result.append(count)
+            count = 1
+            maxDay = day
         }
     }
-    result.append(cnt)
+    
+    // 마지막 배포 추가
+    if count > 0 {
+        result.append(count)
+    }
     
     return result
 }
