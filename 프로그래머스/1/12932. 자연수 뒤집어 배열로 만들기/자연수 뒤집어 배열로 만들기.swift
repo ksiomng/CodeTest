@@ -1,8 +1,9 @@
 func solution(_ n:Int64) -> [Int] {
-    var str = String(n)
-    var arr = [Int]()
-    for c in str{
-        arr.append(Int(String(c))!)
+    var result = [Int]()
+    var num: Int64 = n
+    while num != 0 {
+        result.append(Int(num%10))
+        num /= 10
     }
-    return arr.reversed()
+    return result
 }
