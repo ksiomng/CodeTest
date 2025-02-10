@@ -1,17 +1,19 @@
 import Foundation
 
 func solution(_ d:[Int], _ budget:Int) -> Int {
-    var dd = d.sorted()
-    var sum = 0
+    var arr = d.sorted()
     var cnt = 0
-    for i in 0..<d.count {
-        sum += dd[i]
-        if sum <= budget {
-            cnt += 1
-        }
-        else {
+    var m = budget
+    
+    while m > 0 {
+        if m < arr[0] {
             break
+        } else {
+        m -= arr.removeFirst()
+        if m < 0 {break}
+        cnt += 1
         }
+        if cnt == d.count {break}
     }
     return cnt
 }
