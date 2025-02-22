@@ -1,7 +1,7 @@
 func solution(_ x:Int) -> Bool {
-    return x % String(x).reduce(0, {$0 + Int(String($1))!}) == 0
+    var sum: Int = 0
+    for str in String(x) {
+        sum += Int(String(str))!
+    }
+    return x % sum == 0
 }
-
-// func solution(_ x:Int) -> Bool {
-//     return x % String(x).reduce(0, {$0 + Int(String($1))!}) == 0 ? true : false
-// }
