@@ -1,5 +1,5 @@
 func solution(_ arr:[Int]) -> [Int] {
-    var arr2 = arr
-    arr2.remove(at: arr.firstIndex(of: (arr.min())!)!)
-    return arr2 == [] ? [-1]:arr2
+    guard let minValue = arr.min() else { return [-1] }
+    let result = arr.filter { $0 != minValue }
+    return result.isEmpty ? [-1] : result
 }
