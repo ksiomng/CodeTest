@@ -1,5 +1,5 @@
-func solution(_ s:String) -> String {
-    var adr = s.count/2
-    var arr = s.count%2 == 0 ? [Array(s)[adr-1], Array(s)[adr]] : [Array(s)[adr]]
-    return String(arr)
+func solution(_ s: String) -> String {
+    let arr = Array(s)
+    let mid = arr.count / 2
+    return arr.count % 2 == 0 ? String(arr[mid-1]) + String(arr[mid]) : String(arr[mid])
 }
