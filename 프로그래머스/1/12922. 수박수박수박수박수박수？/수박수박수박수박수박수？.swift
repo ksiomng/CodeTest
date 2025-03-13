@@ -1,3 +1,11 @@
 func solution(_ n:Int) -> String {
-    return String(String(repeating: "수박", count: n/2+1).prefix(n))
+    var result: String = ""
+    for i in 0..<n {
+        if i % 2 == 0 {
+            result += "수"
+        } else {
+            result += "박"
+        }
+    }
+    return result
 }
