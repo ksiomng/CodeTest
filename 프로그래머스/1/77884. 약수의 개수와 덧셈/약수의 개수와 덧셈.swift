@@ -1,15 +1,19 @@
 import Foundation
 
 func solution(_ left:Int, _ right:Int) -> Int {
-    var num = 0
-    for i in left...right {
-        var cnt = 0
+    var answer = 0
+    for i in left ... right {
+        var count = 0
         for j in 1...i {
-            if (i % j == 0) {
-                cnt += 1
+            if i % j == 0 {
+                count += 1
             }
         }
-        cnt%2 == 0 ? (num += i) : (num -= i)
+        if count % 2 == 0 {
+            answer += i
+        } else {
+            answer -= i
+        }
     }
-    return num
+    return answer
 }
