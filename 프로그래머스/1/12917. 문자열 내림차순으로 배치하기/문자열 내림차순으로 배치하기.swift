@@ -1,3 +1,3 @@
-func solution(_ s:String) -> String {
-    return String(Array(s).sorted(by: >))
+func solution(_ s: String) -> String {
+    return String(s.sorted(by: >))
 }
