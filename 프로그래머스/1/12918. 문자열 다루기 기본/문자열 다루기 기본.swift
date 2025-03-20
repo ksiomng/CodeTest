@@ -1,3 +1,8 @@
 func solution(_ s:String) -> Bool {
-    return (s.count == 4 || s.count == 6) && s.filter{$0.isNumber}.count == s.count
+    for s in s {
+        if !s.isNumber {
+            return false
+        }
+    }
+    return s.count == 4 || s.count == 6 ? true : false
 }
