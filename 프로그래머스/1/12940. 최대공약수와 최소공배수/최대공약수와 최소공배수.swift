@@ -1,12 +1,9 @@
-func solution(_ n:Int, _ m:Int) -> [Int] {
-    var num  = 1
-    for i in 2...n {
-        for j in 2...m {
-            if n % i == 0 && m % j == 0 &&  i ==  j {
-                num = i
-                break
-            }
-        }
-    }
-    return [num,(n*m)/num]
+func solution(_ n: Int, _ m: Int) -> [Int] {
+    let greatestCommonDivisor = gcd(n, m)
+    let leastCommonMultiple = (n * m) / greatestCommonDivisor
+    return [greatestCommonDivisor, leastCommonMultiple]
+}
+
+func gcd(_ a: Int, _ b: Int) -> Int {
+    return b == 0 ? a : gcd(b, a % b)
 }
