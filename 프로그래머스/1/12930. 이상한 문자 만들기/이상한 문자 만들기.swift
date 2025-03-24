@@ -1,19 +1,17 @@
-import Foundation
-
 func solution(_ s:String) -> String {
-    var arr = s.components(separatedBy: " ")
-    
+    var arr = Array(s)
+    var cnt = 0
     for i in 0..<arr.count {
-        var str = ""
-        for (j, char) in arr[i].enumerated() {
-            if j % 2 == 0 {
-                str += char.uppercased()
-            }
-            else {
-                str += char.lowercased()
-            }
+        if arr[i] != " " {
+            cnt += 1
+        } else {
+            cnt = 0
         }
-        arr[i] = str
+        if cnt % 2 != 0 {
+            arr[i] = Character(String(arr[i]).uppercased())
+        } else {
+            arr[i] = Character(String(arr[i]).lowercased())
+        }
     }
-    return arr.joined(separator: " ")
+    return String(arr)
 }
