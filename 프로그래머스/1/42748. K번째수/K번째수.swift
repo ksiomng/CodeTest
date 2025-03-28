@@ -6,8 +6,8 @@ func solution(_ array:[Int], _ commands:[[Int]]) -> [Int] {
         var arr = [Int]()
         for j in (commands[i][0]-1)...(commands[i][1]-1) {
             arr.append(array[j])
-            arr = arr.sorted()
         }
+        arr = arr.sorted()
         result.append(arr[commands[i][2]-1])
     }
     return result
