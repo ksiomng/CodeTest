@@ -1,23 +1,19 @@
-func solution(_ s:String, _ n:Int) -> String {
-    let arr = Array(s)
-    var str = ""
-    for v in s.unicodeScalars {
-        var asc = Int(v.value)
-        if asc == 32 {
-            str.append(" ")
+func solution(_ s: String, _ n: Int) -> String {
+    var result = ""
+
+    for char in s {
+        if char == " " { 
+            result.append(char)
+            continue
         }
-        else {
-            switch asc {
-            case 65...90:
-                asc = asc + n
-                str.append(String(UnicodeScalar((asc-65)%26 + 65)!))
-            case 97...122:
-                asc = asc + n
-                str.append(String(UnicodeScalar((asc-97) % 26 + 97)!))
-            default:
-                break
-            }
-        }
+        
+        let isUpper = char.isUppercase ? 65 : 97 // 대문자: 'A'(65), 소문자: 'a'(97)
+        let shifted = (Int(char.asciiValue!) - isUpper + n) % 26 + isUpper
+        let newChar = Character(UnicodeScalar(shifted)!)
+        
+        result.append(newChar)
     }
-    return str
+
+    return result
 }
+
